@@ -1,0 +1,19 @@
+<div class="login-status-header">
+   <div *ngIf="!userLog.loggedIn();else out">
+     <button routerLink="/register" class="security-btn">Sign Up</button>
+     <button routerLink="/login" class="security-btn">Sign In</button>  
+    </div>
+    <ng-template #out>
+      <button  (click)="userLog.logout()" class="security-btn">Logout</button>
+      <div *ngIf="this.newUser.role == 'Admin';else user">
+        <button routerLink="/users" class="security-btn">Users</button>
+        <button routerLink="/admin/products" class="security-btn">Products</button>
+        <button routerLink="/admin/orders" class="security-btn">Orders</button>
+       </div>
+       <ng-template #user>
+        <button routerLink="/user/orders" class="security-btn">My Orders</button>
+       </ng-template>
+      
+    </ng-template>
+    
+</div>

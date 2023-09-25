@@ -1,0 +1,25 @@
+<div class="main-content">
+    <div class="section-content section-content-p30">
+     <div class="container-fluid">
+       <table class="table">
+        <thead class="table-dark">
+           <tr>
+            <th>TrackingNumber</th>
+            <th>Quantity</th>
+            <th>TotalPrice</th>
+            <th>CreationDate</th>
+           </tr>
+       </thead>
+       <tbody>
+        <tr *ngFor="let ord of orders">
+            <td>{{ord.orderTrackingNumber}}</td>
+            <td>{{ord.totalQuantity}}</td>
+            <td>{{ord.totalPrice | currency:'USD'}}</td>
+            <td>{{ord.dateCreated}}</td>
+           </tr>
+       </tbody>
+     </table>
+     </div>
+    </div>
+   </div>
+   

@@ -1,0 +1,56 @@
+<div class="main-content page-m">
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+            <form [formGroup]="verifyFormGroup" (ngSubmit)="onSubmit()">
+                <!--Register form group-->
+                <div class="form-area">
+                    <h3>User Verification</h3>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                           <label>Email:</label>  
+                        </div>
+                        <div class="col-md-9">
+                         <div class="input-space">
+                            <input formControlName="email" type="text"  [(ngModel)]="newUser.email">
+                            <!-- {{this.verifyFormGroup.get('newUser.email')?.value}} -->
+                            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="alert alert-danger mt-1">
+                              <div *ngIf="email?.errors?.['required']">
+                                    Email is required
+                              </div>
+                              <div *ngIf="email?.errors?.['pattern']">
+                                 Email must be in valid format!
+                              </div>
+                           </div>
+                         </div>    
+                       </div>        
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-2">
+                         <label>Otp Code:</label>  
+                      </div>
+                      <div class="col-md-9">
+                       <div class="input-space">
+                          <input formControlName="otp" type="text" >
+                           <div *ngIf="otp?.invalid && (otp?.dirty || otp?.touched)" class="alert alert-danger mt-1">
+                             <div *ngIf="otp?.errors?.['required'] || otp?.errors?.['notOnlyWhitespace']">
+                                  Otp code is required!
+                             </div>
+                             <div *ngIf="otp?.errors?.['minlength']">
+                               Code must be 5 characters long.
+                             </div>
+                         </div>
+                       </div>    
+                     </div>        
+                  </div>
+                    <div class="text-center">
+                              <button type="submit" class="btn btn-info">Verify</button>
+                    </div>
+                </div>
+                
+              </form>
+            </div>
+        </div>
+    </div>
+

@@ -1,0 +1,27 @@
+<div class="main-content">
+    <div class="section-content section-content-p30">
+     <div class="container-fluid">
+       <table class="table">
+        <thead class="table-dark">
+           <tr>
+            <th>Name</th>
+            <th>SKU</th>
+            <th>Price</th>
+            <th>Units in Stock</th>
+            <td><button routerLink="http://angular-spring.s3-website.eu-north-1.amazonaws.com/admin/addproduct" class="btn btn-success btn">Add New Product</button></td>
+           </tr>
+       </thead>
+       <tbody>
+        <tr *ngFor="let prod of products">
+            <td>{{prod.name}}</td>
+            <td>{{prod.sku}}</td>
+            <td>{{prod.unitPrice | currency:'USD'}}</td>
+            <td>{{prod.unitsInStock}}</td>
+            <td><button (click)="deleteProduct(prod.sku)" class="btn btn-danger btn">Delete Product</button></td>   
+           </tr>
+       </tbody>
+     </table>
+     </div>
+    </div>
+   </div>
+   

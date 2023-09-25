@@ -1,0 +1,28 @@
+<div class="main-content">
+    <div class="section-content section-content-p30">
+     <div class="container-fluid">
+       <table class="table">
+        <thead class="table-dark">
+           <tr>
+            <th>Order Id</th>
+            <th>User Email</th>
+            <th>User Name</th>
+            <th>User Surname</th>
+           </tr>
+       </thead>
+       <tbody>
+        <ng-container *ngFor="let customer of customers" >
+            <tr *ngIf="customer.email === user.email">
+                <td>{{customer.id}}</td> 
+                <td>{{customer.email}}</td>
+                <td>{{customer.firstName}}</td> 
+                <td>{{customer.lastName}}</td>
+            </tr> 
+         </ng-container>
+       </tbody>
+     </table>
+     </div>
+    </div>
+   </div>
+   
+

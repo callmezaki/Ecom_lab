@@ -1,0 +1,27 @@
+<div class="main-content">
+ <div class="section-content section-content-p30">
+  <div class="container-fluid">
+    <table class="table">
+     <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Verified</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.name}}</td>
+            <td>{{user.surname}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.role}}</td>
+            <td>{{user.verified}}</td>
+            <td><button (click)="deleteUser(user.id)" class="btn btn-danger btn-sm">Delete</button></td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+ </div>
+</div>

@@ -35,12 +35,12 @@ public class UserController {
             throw new IllegalStateException("Email taken");
         }
         else{
-            String otp = otpCode.generateOtp();
-            try {
-                emailBody.sendOtp(user.getEmail(),otp);
-            } catch (MessagingException e) {
-                throw new RuntimeException("Unable to send otp please try again!");
-            }
+            // String otp = otpCode.generateOtp();
+            // try {
+            //     emailBody.sendOtp(user.getEmail(),otp);
+            // } catch (MessagingException e) {
+            //     throw new RuntimeException("Unable to send otp please try again!");
+            // }
 
             User newUser = new User();
             newUser.setName(user.getName());
@@ -48,8 +48,8 @@ public class UserController {
             newUser.setEmail(user.getEmail());
             newUser.setRole(user.getRole());
             newUser.setPassword(user.getPassword());
-            newUser.setOtp(otp);
-            newUser.setVerified(Boolean.FALSE);
+            newUser.setVerified(true);
+            // newUser.setVerified(Boolean.TRUE);
             userRepository.save(newUser);
 
             return userService.registerNewUser(newUser);

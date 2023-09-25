@@ -7,21 +7,18 @@ import { Orders } from '../common/orders';
 import { Customer } from '../common/customer';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrdersService {
-  private adminOrderUrl = 'http://springtc.eu-north-1.elasticbeanstalk.com/api/checkout/orders';
-  private userOrderUrl = 'http://springtc.eu-north-1.elasticbeanstalk.com/api/customers';
-  
-  constructor(private httpClient: HttpClient) { }
+  private adminOrderUrl = 'http://localhost:5000/api/checkout/orders';
+  private userOrderUrl = 'http://localhost:5000/api/customers';
 
-  adminOrders():Observable<any>{
-    return this.httpClient.get<Orders>(this.adminOrderUrl)
+  constructor(private httpClient: HttpClient) {}
+
+  adminOrders(): Observable<any> {
+    return this.httpClient.get<Orders>(this.adminOrderUrl);
   }
-  Customers():Observable<any>{
-    return this.httpClient.get<Customer>(this.userOrderUrl)
+  Customers(): Observable<any> {
+    return this.httpClient.get<Customer>(this.userOrderUrl);
   }
-
-
-  
 }

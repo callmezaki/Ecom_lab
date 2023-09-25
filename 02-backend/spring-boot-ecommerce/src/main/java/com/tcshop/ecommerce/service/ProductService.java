@@ -22,6 +22,12 @@ public class ProductService {
     public ProductCategory addCategory(ProductCategory productCategory) {
         return productCategoryRepository.save(productCategory);
     }
+    public ProductCategory addCategory(String categoryName) {
+        ProductCategory category = new ProductCategory();
+        category.setCategoryName(categoryName);
+        return productCategoryRepository.save(category); 
+    }
+    
     public Product addProduct(Product product) {
         return productRepository.save(product);
     }

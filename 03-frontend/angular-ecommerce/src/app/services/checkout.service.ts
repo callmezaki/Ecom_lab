@@ -4,15 +4,14 @@ import { Purchase } from '../common/purchase';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CheckoutService {
+  private purchaseUrl = 'http://localhost:5000/api/checkout/purchase';
 
-  private purchaseUrl = 'http://springtc.eu-north-1.elasticbeanstalk.com/api/checkout/purchase';
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  placeOrder(purchase: Purchase):Observable<any>{
-      return this.httpClient.post<Purchase>(this.purchaseUrl,purchase);
+  placeOrder(purchase: Purchase): Observable<any> {
+    return this.httpClient.post<Purchase>(this.purchaseUrl, purchase);
   }
 }

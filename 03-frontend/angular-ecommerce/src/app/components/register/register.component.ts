@@ -61,7 +61,7 @@ export class RegisterComponent {
       next: response =>{
         alert(`User successfully Registred!`)
         localStorage.setItem('user',JSON.stringify(response));
-        this.router.navigate(['/verify'])
+        this.router.navigate(['/login'])
         
       },
       error: err =>{

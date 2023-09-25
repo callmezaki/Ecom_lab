@@ -7,32 +7,30 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RegisterService {
+  private registerUrl = 'http://localhost:5000/api/register';
+  private loginUrl = 'http://localhost:5000/api/login';
+  private verifyUrl = 'http://localhost:5000/api/verify';
 
-  private registerUrl = 'http://springtc.eu-north-1.elasticbeanstalk.com/api/register';
-  private loginUrl = 'http://springtc.eu-north-1.elasticbeanstalk.com/api/login';
-  private verifyUrl = 'http://springtc.eu-north-1.elasticbeanstalk.com/api/verify';
-
-  constructor(private httpClient: HttpClient,
-              private router: Router) {}
-  registerUser(register: User):Observable<any>{
-      return this.httpClient.post<User>(this.registerUrl,register);
+  constructor(private httpClient: HttpClient, private router: Router) {}
+  registerUser(register: User): Observable<any> {
+    return this.httpClient.post<User>(this.registerUrl, register);
   }
-  verifyUser(verify: User):Observable<any>{
-    return this.httpClient.put<User>(this.verifyUrl,verify)
+  verifyUser(verify: User): Observable<any> {
+    return this.httpClient.put<User>(this.verifyUrl, verify);
   }
-  loginUser(login:User):Observable<any>{
-    return this.httpClient.post<User>(this.loginUrl,login)
+  loginUser(login: User): Observable<any> {
+    return this.httpClient.post<User>(this.loginUrl, login);
   }
-  loggedIn(){
-    return !!window.localStorage.getItem('userLogged')
+  loggedIn() {
+    return !!window.localStorage.getItem('userLogged');
   }
   logout() {
     //Removes user from data storage, and redirects.
-    window.localStorage.removeItem('userLogged')
-    window.localStorage.removeItem('user')
-    this.router.navigate(['/login'])
+    window.localStorage.removeItem('userLogged');
+    window.localStorage.removeItem('user');
+    this.router.navigate(['/login']);
   }
 }

@@ -1,11 +1,14 @@
 <div class="menu-sidebar-content js-scrollbar1">
-    <nav class="navbar-sidebar">
-      <ul class="list-unstyled navbar-list">
-        <li *ngFor="let prodCategory of productCategories">
-          <a routerLink="http://angular-spring.s3-website.eu-north-1.amazonaws.com/category/{{prodCategory.id}}" routerLinkActive="active-link">
-          {{prodCategory.categoryName}}
+  <nav class="navbar-sidebar">
+    <ul class="list-unstyled navbar-list">
+      <li *ngFor="let prodCategory of productCategories">
+        <a
+          routerLink="/category/{{ prodCategory.id }}"
+          routerLinkActive="active-link"
+        >
+          {{ prodCategory.categoryName }}
         </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+      </li>
+    </ul>
+  </nav>
+</div>

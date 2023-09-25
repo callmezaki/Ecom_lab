@@ -13,6 +13,7 @@ services:
       - ./02-backend/spring-boot-ecommerce:/root/back
     ports:
       - 4200:4200
+      - 5000:5000
     networks:
       - my-network
 
@@ -20,10 +21,10 @@ services:
     image: mysql:latest
     container_name: db
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root_secure_password
       MYSQL_DATABASE: full-stack-ecommerce
-      MYSQL_USER: user
-      MYSQL_PASSWORD: user
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: secure_password
     ports:
       - 3306:3306
     networks:

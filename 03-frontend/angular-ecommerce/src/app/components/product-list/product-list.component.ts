@@ -113,6 +113,8 @@ export class ProductListComponent {
                                                   this.thePageNumber = data.page.number+1;
                                                   this.thePageSize = data.page.size;
                                                   this.theTotalElements = data.page.totalElements;
+
+                                                  
                                                 }
                                                );
   }

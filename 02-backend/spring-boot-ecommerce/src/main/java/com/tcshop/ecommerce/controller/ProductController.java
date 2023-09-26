@@ -44,6 +44,7 @@ public class ProductController {
     public Iterable<ProductCategory> getAllCategories(){
         return productService.findAll();
     }
+    
     @GetMapping("/products/all")
     public Iterable<Product> getAllProducts(){
         return productService.findProducts();

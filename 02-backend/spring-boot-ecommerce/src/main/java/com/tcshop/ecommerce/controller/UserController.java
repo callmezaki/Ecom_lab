@@ -75,7 +75,7 @@ public class UserController {
             return user;
         }
         else{
-            throw new IllegalStateException("User doesn't exist or his account is not Verified!");
+            throw new IllegalStateException("User doesn't exist!");
        }
     }
     @GetMapping("/users")

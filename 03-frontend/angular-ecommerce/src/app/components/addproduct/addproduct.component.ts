@@ -24,6 +24,7 @@ export class AddproductComponent {
               
   ngOnInit(): void{
     this.productFormGroup = this.formBuilder.group({
+        
         name: new FormControl('',
                     [Validators.required,Validators.minLength(4), TCShopValidators.notOnlyWhiteSpace]),
         sku: new FormControl('',

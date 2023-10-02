@@ -54,4 +54,15 @@ public class ProductController {
     public Optional<Product> getProductById(@PathVariable Long id) {
         return (productService.findProductById(id));
     }
+
+    @PostMapping(value = "/products/createXml", consumes = "application/xml")
+    public ResponseEntity<String> createProductFromXml(@RequestBody String xmlData) {
+        try {
+            // Parse the XML data here using the XMLParser.
+            // Process the parsed data and create the product.
+            return ResponseEntity.ok("Product created successfully!");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating product!");
+        }
+    }
 }

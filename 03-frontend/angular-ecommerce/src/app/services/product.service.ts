@@ -97,7 +97,10 @@ export class ProductService {
       .get<GetResponseProducts>(searchUrl)
       .pipe(map((response) => response._embedded.products));
   }
-
+  createProductFromXml(xmlData: string): Observable<any> {
+    const headers = { 'Content-Type': 'application/xml' };
+    return this.httpClient.post(`${this.baseUrl}/createXml`, xmlData, { headers });
+  }
   getAllProducts(): Observable<Product[]> {
     return this.httpClient
       .get<GetResponseProducts>(this.baseUrl)

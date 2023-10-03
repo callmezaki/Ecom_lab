@@ -10,9 +10,22 @@
                        </div>
                        <div class="col-md-9">
                            <div class="input-space">
-                               <textarea [(ngModel)]="xmlData" rows="10" cols="30"></textarea>
+                               <textarea [(ngModel)]="xmlData" rows="20" cols="70"></textarea>
                            </div>    
                        </div>        
+                   </div>
+                   <div class="row">
+                       <div class="col-md-9 offset-md-2">
+                           <small>Example XML:</small>
+                           <pre>
+&lt;product&gt;
+ &lt;name&gt;Sample Product&lt;/name&gt;
+ &lt;sku&gt;12345&lt;/sku&gt;
+ &lt;description&gt;This is a sample product.&lt;/description&gt;
+ &lt;price&gt;99.99&lt;/price&gt;
+&lt;/product&gt;
+                           </pre>
+                       </div>
                    </div>
                    <div class="row">
                        <div class="col-md-2">

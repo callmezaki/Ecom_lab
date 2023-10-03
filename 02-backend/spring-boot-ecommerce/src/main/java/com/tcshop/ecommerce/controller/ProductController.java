@@ -3,6 +3,7 @@ package com.tcshop.ecommerce.controller;
 import com.tcshop.ecommerce.dao.ProductCategoryRepository;
 import com.tcshop.ecommerce.dao.ProductRepository;
 import com.tcshop.ecommerce.entity.Product;
+import com.tcshop.ecommerce.util.UnsafeXMLParser;
 import com.tcshop.ecommerce.entity.ProductCategory;
 import com.tcshop.ecommerce.service.ProductService;
 import jakarta.transaction.Transactional;
@@ -10,7 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.w3c.dom.Document;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.xml.sax.InputSource;
+import java.io.StringReader;
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @CrossOrigin("http://localhost:4200")
@@ -55,14 +61,34 @@ public class ProductController {
         return (productService.findProductById(id));
     }
 
-    @PostMapping(value = "/products/createXml", consumes = "application/xml")
-    public ResponseEntity<String> createProductFromXml(@RequestBody String xmlData) {
+    @PostMapping(value = "/createXml", consumes = "application/xml")
+    public ResponseEntity<?> createProductFromXml(@RequestBody String xmlData) {
         try {
-            // Parse the XML data here using the XMLParser.
-            // Process the parsed data and create the product.
+            // Use the UnsafeXMLParser to parse the XML data
+            Document doc = new UnsafeXMLParser().parseXML(xmlData);
+    
+            // Extract data from the parsed XML
+            String name = doc.getElementsByTagName("name").item(0).getTextContent();
+            String sku = doc.getElementsByTagName("sku").item(0).getTextContent();
+            String description = doc.getElementsByTagName("description").item(0).getTextContent();
+            String price = doc.getElementsByTagName("price").item(0).getTextContent();
+    
+            BigDecimal priceValue = new BigDecimal(price);
+
+            // Use the extracted data to create a product
+            Product product = new Product();
+            product.setName(name);
+            product.setSku(sku);
+            product.setDescription(description);
+            product.setUnitPrice(priceValue);
+    
+            // Save the product using your service/repository (based on your existing code)
+            productService.addProduct(product);
+    
             return ResponseEntity.ok("Product created successfully!");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating product!");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating product from XML: " + e.getMessage());
         }
     }
+    
 }

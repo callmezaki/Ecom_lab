@@ -15,9 +15,15 @@ export class AddproductComponent {
   constructor(private router: Router, private productService: ProductService) {}
 
   onSubmit(): void {
-    this.productService.createProductFromXml(this.xmlData).subscribe(
-      data => this.response = 'Product created successfully!',
-      error => this.response = 'Error creating product!'
-    );
+    this.productService.createProductFromXml(this.xmlData).subscribe({
+      next: response =>{
+        alert(`Product Created!`)
+        console.log(response)
+        this.router.navigate(['/admin/products'])      
+      },
+      error: err =>{
+        alert(`There was an error:${err.message}`)
+      }
+  });
   }
 }

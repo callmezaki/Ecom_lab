@@ -1,39 +1,38 @@
 <div class="main-content page-m">
-   <div class="section-content section-content-p30">
-       <div class="container-fluid">
-           <form (ngSubmit)="onSubmit()">
-               <div class="form-area">
-                   <h3>Create Product</h3>
-                   <div class="row">
-                       <div class="col-md-2">
-                           <label>XML Input:</label>  
-                       </div>
-                       <div class="col-md-9">
-                           <div class="input-space">
-                               <textarea [(ngModel)]="xmlData" rows="20" cols="70" name="xmlData"></textarea>
-                           </div>    
-                       </div>        
-                   </div>
-                   <div class="row">
-                       <div class="col-md-9 offset-md-2">
-                           <small>Example XML:</small>
-                           <pre>
-&lt;product&gt;
- &lt;name&gt;Sample Product&lt;/name&gt;
- &lt;sku&gt;12345&lt;/sku&gt;
- &lt;description&gt;This is a sample product.&lt;/description&gt;
- &lt;price&gt;99.99&lt;/price&gt;
-&lt;/product&gt;
-                           </pre>
-                       </div>
-                   </div>
-                   <div class="row">
-                       <div class="col-md-2">
-                           <button type="submit">Create Product</button>
-                       </div>
-                   </div>
-               </div>
-           </form>
-       </div>
-   </div>
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+            <form (ngSubmit)="onSubmit()">
+                <div class="form-area">
+                    <h3>Create Product</h3>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>XML Input:</label>  
+                        </div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <textarea [(ngModel)]="xmlData" rows="25" cols="70" name="xmlData"></textarea>
+                            </div>
+                            <!-- XML example displayed as plain, copyable text below the textarea -->
+                            <pre>&lt;product&gt;
+  &lt;id&gt;1&lt;/id&gt;
+  &lt;sku&gt;SampleSKU&lt;/sku&gt;
+  &lt;name&gt;Sample Product&lt;/name&gt;
+  &lt;description&gt;This is a sample product.&lt;/description&gt;
+  &lt;unitPrice&gt;99.99&lt;/unitPrice&gt;
+  &lt;imageUrl&gt;http://sample.com/image.jpg&lt;/imageUrl&gt;
+  &lt;unitsInStock&gt;100&lt;/unitsInStock&gt;
+  &lt;dateCreated&gt;2023-09-27T12:00:00&lt;/dateCreated&gt;
+  &lt;lastUpdated&gt;2023-09-27T12:00:00&lt;/lastUpdated&gt;
+&lt;/product&gt;</pre>    
+                        </div>        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <button type="submit">Create Product</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

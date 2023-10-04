@@ -61,26 +61,34 @@ public class ProductController {
         return (productService.findProductById(id));
     }
 
-    @PostMapping(value = "/createXml", consumes = "application/xml")
+    @PostMapping(value = "/products/createXml", consumes = "application/xml")
     public ResponseEntity<?> createProductFromXml(@RequestBody String xmlData) {
         try {
             // Use the UnsafeXMLParser to parse the XML data
             Document doc = new UnsafeXMLParser().parseXML(xmlData);
-    
-            // Extract data from the parsed XML
-            String name = doc.getElementsByTagName("name").item(0).getTextContent();
-            String sku = doc.getElementsByTagName("sku").item(0).getTextContent();
-            String description = doc.getElementsByTagName("description").item(0).getTextContent();
-            String price = doc.getElementsByTagName("price").item(0).getTextContent();
-    
-            BigDecimal priceValue = new BigDecimal(price);
 
+            // Extract data from the parsed XML
+            String sku = doc.getElementsByTagName("sku").item(0).getTextContent();
+            String name = doc.getElementsByTagName("name").item(0).getTextContent();
+            String description = doc.getElementsByTagName("description").item(0).getTextContent();
+            BigDecimal unitPrice = new BigDecimal(doc.getElementsByTagName("unitPrice").item(0).getTextContent());
+            String imageUrl = doc.getElementsByTagName("imageUrl").item(0).getTextContent();
+            int unitsInStock = Integer.parseInt(doc.getElementsByTagName("unitsInStock").item(0).getTextContent());
+    
             // Use the extracted data to create a product
             Product product = new Product();
-            product.setName(name);
             product.setSku(sku);
+            product.setName(name);
             product.setDescription(description);
-            product.setUnitPrice(priceValue);
+            // Handle the category - you might want to look up or create a ProductCategory based on the given value
+            Iterable<ProductCategory> category_it = productService.findAll();
+            ProductCategory category = category_it.iterator().next();
+            product.setCategory(category);
+            product.setUnitPrice(unitPrice);
+            product.setImageUrl(imageUrl);
+            product.setActive(true);
+            product.setUnitsInStock(unitsInStock);
+            // Set dateCreated and lastUpdated
     
             // Save the product using your service/repository (based on your existing code)
             productService.addProduct(product);

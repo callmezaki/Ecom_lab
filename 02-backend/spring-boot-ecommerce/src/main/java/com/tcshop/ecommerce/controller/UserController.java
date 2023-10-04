@@ -5,6 +5,7 @@ import com.tcshop.ecommerce.config.OtpCode;
 import com.tcshop.ecommerce.dao.UserRepository;
 import com.tcshop.ecommerce.entity.Customer;
 import com.tcshop.ecommerce.entity.User;
+import com.tcshop.ecommerce.entity.UserRole;
 import com.tcshop.ecommerce.service.UserService;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,21 +36,13 @@ public class UserController {
             throw new IllegalStateException("Email taken");
         }
         else{
-            // String otp = otpCode.generateOtp();
-            // try {
-            //     emailBody.sendOtp(user.getEmail(),otp);
-            // } catch (MessagingException e) {
-            //     throw new RuntimeException("Unable to send otp please try again!");
-            // }
-
             User newUser = new User();
             newUser.setName(user.getName());
             newUser.setSurname(user.getSurname());
             newUser.setEmail(user.getEmail());
-            newUser.setRole(user.getRole());
+            newUser.setRole(UserRole.User);
             newUser.setPassword(user.getPassword());
             newUser.setVerified(true);
-            // newUser.setVerified(Boolean.TRUE);
             userRepository.save(newUser);
 
             return userService.registerNewUser(newUser);

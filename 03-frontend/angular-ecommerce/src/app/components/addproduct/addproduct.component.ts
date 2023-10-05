@@ -22,7 +22,7 @@ export class AddproductComponent {
         this.router.navigate(['/admin/products'])      
       },
       error: err =>{
-        alert(`There was an error:${err.message}`)
+        console.log(err)
       }
   });
   }

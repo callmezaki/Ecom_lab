@@ -19,10 +19,9 @@ import java.io.StringReader;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("/api")
-public class ProductController {
+public class ProductController extends AppBaseController{
 
     @Autowired
     private ProductService productService;
@@ -93,7 +92,7 @@ public class ProductController {
             // Save the product using your service/repository (based on your existing code)
             productService.addProduct(product);
     
-            return ResponseEntity.ok("Product created successfully!");
+            return ResponseEntity.ok().body(product);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating product from XML: " + e.getMessage());
         }

@@ -1,4 +1,5 @@
 package com.tcshop.ecommerce.security.jwt;
+
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -7,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import com.tcshop.ecommerce.security.jwt.JwtTokenUtil;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -30,7 +32,7 @@ public class JWTRequestFilter extends OncePerRequestFilter  {
 	            throws ServletException, IOException {
 	        logger.warn(request.getRequestURI());
 
-	        if(!request.getRequestURI().startsWith("/auth")) {
+	        if(!request.getRequestURI().startsWith("/auth") && !request.getRequestURI().startsWith("/assets")){
 
 	            final String requestTokenHeader = request.getHeader("Authorization");
 	            String username = null;

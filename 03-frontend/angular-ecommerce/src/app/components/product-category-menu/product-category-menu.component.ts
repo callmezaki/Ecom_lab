@@ -19,7 +19,6 @@ export class ProductCategoryMenuComponent {
   listProductCategories(){
     this.productService.getAllCategories().subscribe(
       data => {
-        // console.log('Product Categories'+JSON.stringify(data))
         this.productCategories = data;
       }
     )

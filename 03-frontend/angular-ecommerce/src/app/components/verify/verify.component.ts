@@ -45,8 +45,6 @@ export class VerifyComponent {
         user.otp = this.verifyFormGroup.controls['otp'].value
         this.userService.verifyUser(user).subscribe({
           next: response=>{
-            alert('User is verified!')
-            console.log(response.otp)
             this.router.navigate(['/login']) 
           },
           error: err=>{

@@ -99,8 +99,6 @@ export class ProductService {
   }
   createProductFromXml(xmlData: string): Observable<any> {
     const headers = { 'Content-Type': 'application/xml' };
-    console.log('here');
-    console.log(xmlData);
     return this.httpClient.post(`${this.baseUrl}/createXml`, xmlData, { headers });
   }
   getAllProducts(): Observable<Product[]> {

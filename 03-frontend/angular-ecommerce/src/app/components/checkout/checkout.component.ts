@@ -115,10 +115,6 @@ export class CheckoutComponent {
     )
   }
   onSubmit(){
-    // console.log("Submit button")
-    // console.log(this.checkoutFormGroup.get('customer')?.value)
-    // console.log("Country Address is:"+this.checkoutFormGroup.get('shippingAddress')?.value.country.name)
-    // console.log("State Address is:"+this.checkoutFormGroup.get('shippingAddress')?.value.state.name)
     if(this.checkoutFormGroup.invalid){
       //Touching all fields triggers the display of error msg.
       this.checkoutFormGroup.markAllAsTouched()

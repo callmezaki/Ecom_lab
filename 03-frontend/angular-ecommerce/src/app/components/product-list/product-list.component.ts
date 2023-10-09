@@ -103,7 +103,6 @@ export class ProductListComponent {
       this.thePageNumber = 1 
     }
     this.previousCategoryId = this.currentCategoryId
-    // console.log(`CurrentCategoryId=${this.currentCategoryId}, thePageNumber=${this.thePageNumber}`)
 
     this.productService.getProductListPaginate(this.thePageNumber-1,
                                                this.thePageSize,

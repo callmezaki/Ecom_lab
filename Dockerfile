@@ -13,6 +13,9 @@ RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - \
 # Install Angular CLI globally
 RUN npm install -g @angular/cli
 
+RUN useradd -m john
+RUN echo 'john:password' | chpasswd
+
 
 # Default command to run when the container starts
 CMD ["/bin/bash"]

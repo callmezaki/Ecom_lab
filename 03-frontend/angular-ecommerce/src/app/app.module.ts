@@ -25,13 +25,15 @@ import { AddproductComponent } from './components/addproduct/addproduct.componen
 import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
 import { UserOrdersComponent } from './components/user-orders/user-orders.component';
 import { JwtInterceptor } from "./interceptors/jwt.interceptor";
+import { AuthGuard } from './guards/auth.guard'; 
+import { AdminGuard } from './guards/admin.guard'; 
 
 const routes: Routes = [
-  { path: 'user/orders', component: UserOrdersComponent },
-  { path: 'admin/orders', component: AdminOrdersComponent },
-  { path: 'admin/addproduct', component: AddproductComponent },
-  { path: 'admin/products', component: AdminProductsComponent },
-  { path: 'users', component: UsersComponent },
+  { path: 'user/orders', component: UserOrdersComponent , canActivate: [AuthGuard]},
+  { path: 'admin/orders', component: AdminOrdersComponent , canActivate: [AuthGuard, AdminGuard]},
+  { path: 'admin/addproduct', component: AddproductComponent , canActivate: [AuthGuard, AdminGuard]},
+  { path: 'admin/products', component: AdminProductsComponent , canActivate: [AuthGuard, AdminGuard]},
+  { path: 'users', component: UsersComponent , canActivate: [AuthGuard, AdminGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'verify', component: VerifyComponent },

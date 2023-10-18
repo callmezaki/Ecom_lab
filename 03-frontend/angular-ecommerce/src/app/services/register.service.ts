@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class RegisterService {
-  private registerUrl = 'http://localhost:5000/api/register';
-  private loginUrl = 'http://localhost:5000/api/login';
+  private registerUrl = 'http://localhost:5000/auth/register';
+  private loginUrl = 'http://localhost:5000/auth/login';
   private verifyUrl = 'http://localhost:5000/api/verify';
 
   constructor(private httpClient: HttpClient, private router: Router) {}

@@ -5,56 +5,33 @@ import com.tcshop.ecommerce.config.OtpCode;
 import com.tcshop.ecommerce.dao.UserRepository;
 import com.tcshop.ecommerce.entity.Customer;
 import com.tcshop.ecommerce.entity.User;
+import com.tcshop.ecommerce.entity.UserRole;
+import com.tcshop.ecommerce.security.jwt.JwtTokenUtil;
 import com.tcshop.ecommerce.service.UserService;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
-@CrossOrigin("http://localhost:4200")
+
 @RestController
 @RequestMapping("/api")
 public class UserController {
+
 
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private OtpCode otpCode;
 
     @Autowired
-    private EmailBody emailBody;
-    @PostMapping("/register")
-    public User registerNewUser(@RequestBody  User user){
-
-        if(userRepository.existsByEmail(user.getEmail())){
-            throw new IllegalStateException("Email taken");
-        }
-        else{
-            // String otp = otpCode.generateOtp();
-            // try {
-            //     emailBody.sendOtp(user.getEmail(),otp);
-            // } catch (MessagingException e) {
-            //     throw new RuntimeException("Unable to send otp please try again!");
-            // }
-
-            User newUser = new User();
-            newUser.setName(user.getName());
-            newUser.setSurname(user.getSurname());
-            newUser.setEmail(user.getEmail());
-            newUser.setRole(user.getRole());
-            newUser.setPassword(user.getPassword());
-            newUser.setVerified(true);
-            // newUser.setVerified(Boolean.TRUE);
-            userRepository.save(newUser);
-
-            return userService.registerNewUser(newUser);
-        }
-    }
+    JwtTokenUtil jwtTokenUtil;
+    
+   
     @PutMapping("/verify")
     public User verifyAccount(@RequestBody  User userBody){
         User user = userRepository.findByEmail(userBody.getEmail());
@@ -68,16 +45,6 @@ public class UserController {
         }
     }
 
-    @PostMapping("/login")
-    public User loginUser(@RequestBody User userData){
-        User user = userRepository.findByEmail(userData.getEmail());
-        if(user.getPassword().equals(userData.getPassword()) && user.getVerified()){
-            return user;
-        }
-        else{
-            throw new IllegalStateException("User doesn't exist!");
-       }
-    }
     @GetMapping("/users")
     public List<User> getAllUsers(){
         return userService.getAllUsers();

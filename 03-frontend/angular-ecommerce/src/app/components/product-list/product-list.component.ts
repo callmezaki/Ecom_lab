@@ -34,6 +34,7 @@ export class ProductListComponent {
   ngOnInit(){
     this.route.paramMap.subscribe(()=>{
       this.listProducts();
+      console.log(this.products);
     })
     // this.allProducts()
   }
@@ -102,7 +103,6 @@ export class ProductListComponent {
       this.thePageNumber = 1 
     }
     this.previousCategoryId = this.currentCategoryId
-    // console.log(`CurrentCategoryId=${this.currentCategoryId}, thePageNumber=${this.thePageNumber}`)
 
     this.productService.getProductListPaginate(this.thePageNumber-1,
                                                this.thePageSize,
@@ -110,11 +110,11 @@ export class ProductListComponent {
                                                .subscribe(
                                                 data=>{
                                                   this.products = data._embedded.products;
+                                                  console.log("here 2" , this.products )
                                                   this.thePageNumber = data.page.number+1;
                                                   this.thePageSize = data.page.size;
                                                   this.theTotalElements = data.page.totalElements;
 
-                                                  
                                                 }
                                                );
   }
@@ -131,5 +131,10 @@ export class ProductListComponent {
       this.cartService.addToCart(theCartItem)
 
     }
+    extractProductId(product: any): number {
+      let link = product._links.self.href;
+      let segments = link.split('/');
+      return +segments[segments.length - 1];  // Convert last segment to number
+  }
 } 
  

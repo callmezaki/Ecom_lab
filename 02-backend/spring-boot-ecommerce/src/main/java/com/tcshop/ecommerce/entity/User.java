@@ -31,4 +31,8 @@ public class User {
     private Boolean verified=false ;
     @Column(name="otp")
     private String otp;
+    
+    @Transient
+    private String jwt;
+
 }

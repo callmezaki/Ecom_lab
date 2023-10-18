@@ -7,11 +7,18 @@ RUN apt-get install -y curl gnupg maven openjdk-17-jdk git\
     && apt-get clean
 
 # Install Node.js (you can specify another version if needed)
-RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - \
-    && apt-get install -y nodejs
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 
-# Install Angular CLI globally
-RUN npm install -g @angular/cli
+# Load NVM and install Node.js && Angular CLI
+RUN /bin/bash -c "source /root/.nvm/nvm.sh \
+    && nvm install 16 \
+    && nvm alias default 16 \
+    && nvm use default \
+    && npm install -g @angular/cli"
 
-# Default command to run when the container starts
+# RUN npm install -g @angular/cli
+
+RUN useradd -m john
+RUN echo 'john:password' | chpasswd
+
 CMD ["/bin/bash"]

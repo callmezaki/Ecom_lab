@@ -31,8 +31,8 @@ export class RegisterComponent {
                               [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
         password: new FormControl('',
                               [Validators.required,Validators.minLength(8),TCShopValidators.notOnlyWhiteSpace]),
-        roles: new FormControl('',
-                              [Validators.required,Validators.minLength(4),TCShopValidators.notOnlyWhiteSpace]),  
+        // roles: new FormControl('',
+        //                       [Validators.required,Validators.minLength(4),TCShopValidators.notOnlyWhiteSpace]),  
                                
     })
   }
@@ -40,7 +40,7 @@ export class RegisterComponent {
   get surname(){return this.registerFormGroup.get('surname')}
   get email(){return this.registerFormGroup.get('email')}
   get password(){return this.registerFormGroup.get('password')}
-  get roles(){return this.registerFormGroup.get('roles')}
+  // get roles(){return this.registerFormGroup.get('roles')}
 
   onSubmit(){
     if(this.registerFormGroup.invalid){
@@ -56,7 +56,7 @@ export class RegisterComponent {
     newUser.surname= this.registerFormGroup.controls['surname'].value
     newUser.email = this.registerFormGroup.controls['email'].value
     newUser.password = this.registerFormGroup.controls['password'].value
-    newUser.role = this.registerFormGroup.controls['roles'].value
+    // newUser.role = this.registerFormGroup.controls['roles'].value
     this.userService.registerUser(newUser).subscribe({
       next: response =>{
         alert(`User successfully Registred!`)

@@ -10,7 +10,7 @@ services:
     stdin_open: true
     volumes:
       - ./03-frontend/angular-ecommerce:/app/front
-      # - ./02-backend/spring-boot-ecommerce:/app/back
+      - ./02-backend/spring-boot-ecommerce:/app/back
     ports:
       - 4200:4200
       - 5000:5000

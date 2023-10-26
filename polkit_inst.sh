@@ -33,16 +33,28 @@ rm -rf polkit
 echo "Polkit $POLKIT_VERSION has been installed."
 
 apt-get install libexpat1-dev
-apt-get install libelogind-dev
+# apt-get install libelogind-dev
 apt-get install libsystemd-dev
-
+apt-get install intltool -y
 apt-cache search libmozjs
 apt-get install libmozjs-78-0 libmozjs-78-dev -y
-./configure --enable-libelogind=yes --enable-libsystemd-login=no
+./configure --enable-libelogind=no --enable-libsystemd-login=yes
 
-sudo apt-get install libpam0g-dev
-sudo apt-get install libsystemd-dev
+apt-get install libpam0g-dev
+apt-get install libsystemd-dev
 
-
-wget https://www.freedesktop.org/software/polkit/releases/polkit-0.118.tar.gz
+make 
+polkitd --version
 tar xvf polkit-0.118.tar.gz
+
+groupadd polkitd
+useradd -r -g polkitd -d /var/lib/polkitd -s /bin/false polkitd
+
+chown root:root /usr/local/lib/polkit-1/polkit-agent-helper-1
+chmod 4755 /usr/local/lib/polkit-1/polkit-agent-helper-1
+chown root:root /usr/local/bin/pkexec
+chmod 4755 /usr/local/bin/pkexec
+chown polkitd:polkitd /usr/local/etc/polkit-1/rules.d
+chmod 700 /usr/local/etc/polkit-1/rules.d
+chown polkitd:polkitd /usr/local/share/polkit-1/rules.d
+chmod 700 /usr/local/share/polkit-1/rules.d

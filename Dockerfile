@@ -1,16 +1,12 @@
 # Use Ubuntu as the base image
-FROM ubuntu:latest
+FROM ubuntu:23.04
 
-# Set environment variables to avoid warnings
-ENV DEBIAN_FRONTEND=noninteractive
 
+COPY script.sh /root/script.sh
 # Install essential tools
 RUN apt-get update \
-    && apt-get install -y curl gnupg maven openjdk-17-jdk git wget pkg-config libglib2.0-dev build-essential \
+    && apt-get install -y curl gnupg maven openjdk-17-jdk git wget \
     && apt-get clean
-
-# Install polkit 0.115 from source
-# RUN wget https://www.freedesktop.org/software/polkit/releases/polkit-0.115.tar.gz 
 
 # Install Node.js (you can specify another version if needed)
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash

@@ -31,8 +31,8 @@ import { AdminGuard } from './guards/admin.guard';
 const routes: Routes = [
   { path: 'user/orders', component: UserOrdersComponent , canActivate: [AuthGuard]},
   { path: 'admin/orders', component: AdminOrdersComponent , canActivate: [AuthGuard, AdminGuard]},
-  { path: 'admin/addproduct', component: AddproductComponent , canActivate: [AuthGuard, AdminGuard]},
-  { path: 'admin/products', component: AdminProductsComponent , canActivate: [AuthGuard, AdminGuard]},
+  { path: 'admin/addproduct', component: AddproductComponent , canActivate: [AuthGuard]},
+  { path: 'admin/products', component: AdminProductsComponent , canActivate: [AuthGuard]},
   { path: 'users', component: UsersComponent , canActivate: [AuthGuard, AdminGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

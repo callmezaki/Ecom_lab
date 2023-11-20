@@ -4,15 +4,16 @@ import { Observable, ObservedValueOf, of } from 'rxjs';
 import { Country } from '../common/country';
 import { map } from 'rxjs/operators';
 import { State } from '../common/state';
+import { environment as env } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TCShopFormService {
-  private countriesUrl = 'http://localhost:5000/api/countries';
-  private statesUrl = 'http://localhost:5000/api/states';
+  private countriesUrl = `http://${env.apiUrl}/api/countries`;
+  private statesUrl = `http://${env.apiUrl}/api/states`;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   getCountries(): Observable<Country[]> {
     return this.httpClient

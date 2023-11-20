@@ -49,13 +49,9 @@ export class CartService {
     this.logCartData(totalPriceValue,totalQuantityValue)
   }
   logCartData(totalPriceValue: number, totalQuantityValue: number) {
-    console.log('Contents of the cart')
     for(let item of this.cartItems){
       const subTotalPrice = item.quantity*item.unitPrice
-      console.log(`name:${item.name}, quantity:=${item.quantity}, unitPrice=${item.unitPrice},subTotalPrice=${subTotalPrice}`)
     }
-    console.log(`TotalPrice:${totalPriceValue.toFixed(2)},TotalQuantity:${totalQuantityValue}`)
-    console.log('----')
   }
 
   decrementQuantity(theCartItem: CartItem) {

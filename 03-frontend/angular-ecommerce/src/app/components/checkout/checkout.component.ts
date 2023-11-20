@@ -80,11 +80,9 @@ export class CheckoutComponent {
     })
     //populate credit card months,date starts from 0
     const startMonth: number = new Date().getMonth()+1
-    console.log("Start month:"+startMonth)
 
     this.tcShopFormService.getCreditCardMonths(startMonth).subscribe(
       data=>{
-        console.log("Retrivied credit card months"+JSON.stringify(data))
         this.creditCardMonths = data
       }
     )

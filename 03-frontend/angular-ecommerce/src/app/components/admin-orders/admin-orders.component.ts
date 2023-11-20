@@ -22,7 +22,6 @@ export class AdminOrdersComponent {
       this.orderService.adminOrders().subscribe(
         data=>{
           this.orders=data
-          console.log(data)
         }
       )
     }

@@ -19,14 +19,12 @@ export class UserOrdersComponent {
   constructor(private customerService: OrdersService){}
 
   ngOnInit():void{
-    console.log(this.user.email)
     this.getCustomer()
   }
   getCustomer(){
     this.customerService.Customers().subscribe(
       data=>{
         this.customers = data
-        console.log(data)
       }
     )
   }

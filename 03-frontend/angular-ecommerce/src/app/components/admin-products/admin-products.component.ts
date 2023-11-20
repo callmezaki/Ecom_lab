@@ -37,7 +37,6 @@ export class AdminProductsComponent {
      .subscribe(
       data=>{
         this.products = data;
-        console.log(data)
       }
      );
     }

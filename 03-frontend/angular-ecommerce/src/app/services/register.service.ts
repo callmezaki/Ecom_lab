@@ -5,16 +5,17 @@ import { Observable } from 'rxjs';
 import { Roles } from '../common/roles';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment as env } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegisterService {
-  private registerUrl = 'http://localhost:5000/auth/register';
-  private loginUrl = 'http://localhost:5000/auth/login';
-  private verifyUrl = 'http://localhost:5000/api/verify';
+  private registerUrl = `http://${env.apiUrl}/auth/register`;
+  private loginUrl = `http://${env.apiUrl}/auth/login`;
+  private verifyUrl = `http://${env.apiUrl}/api/verify`;
 
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(private httpClient: HttpClient, private router: Router) { }
   registerUser(register: User): Observable<any> {
     return this.httpClient.post<User>(this.registerUrl, register);
   }

@@ -2,16 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../common/user';
 import { Observable, Subject, tap } from 'rxjs';
+import { environment as env } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
   private ROOT_URL: String = 'http://springtc.eu-north-1.elasticbeanstalk.com';
-  private usersUrl = 'http://localhost:5000/api/users';
-  private deleteUrl = 'http://localhost:5000/api/delete';
+  private usersUrl = `http://${env.apiUrl}/api/users`;
+  private deleteUrl = `http://${env.apiUrl}/api/delete`;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   private _refreshNeeded$ = new Subject<void>();
 

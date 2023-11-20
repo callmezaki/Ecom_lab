@@ -18,7 +18,6 @@ export class AddproductComponent {
     this.productService.createProductFromXml(this.xmlData).subscribe({
       next: response =>{
         alert(`Product Created!`)
-        console.log(response)
         this.router.navigate(['/admin/products'])      
       },
       error: err =>{

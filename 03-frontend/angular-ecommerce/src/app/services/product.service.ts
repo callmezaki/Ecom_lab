@@ -4,20 +4,21 @@ import { Observable, Subject } from 'rxjs';
 import { Product } from '../common/product';
 import { map, tap } from 'rxjs/operators';
 import { ProductCategory } from '../common/product-category';
+import { environment as env } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private baseUrl = 'http://localhost:5000/api/products';
-  private categoryUrl = 'http://localhost:5000/api/product-category';
-  private deleteUrl = 'http://localhost:5000/api/products/delete';
-  private addProductUrl = 'http://localhost:5000/api/products/add';
-  private allCategories = 'http://localhost:5000/api/category/all';
-  private allProducts = 'http://localhost:5000/api/products/all';
-  private singleProduct = 'http://localhost:5000/api/products/all/id';
+  private baseUrl = `http://${env.apiUrl}/api/products`;
+  private categoryUrl = `http://${env.apiUrl}/api/product-category`;
+  private deleteUrl = `http://${env.apiUrl}/api/products/delete`;
+  private addProductUrl = `http://${env.apiUrl}/api/products/add`;
+  private allCategories = `http://${env.apiUrl}/api/category/all`;
+  private allProducts = `http://${env.apiUrl}/api/products/all`;
+  private singleProduct = `http://${env.apiUrl}/api/products/all/id`;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   private _refreshNeeded$ = new Subject<void>();
 

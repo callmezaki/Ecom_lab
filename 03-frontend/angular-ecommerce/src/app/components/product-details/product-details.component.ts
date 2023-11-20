@@ -28,12 +28,10 @@ export class ProductDetailsComponent {
     this.productService.getProduct(theProductId).subscribe(
       data=>{
         this.product=data;
-        console.log(data)
       }
     )
   }
   addToCart(){
-      console.log(`Adding to cart:${this.product.unitPrice}`)
       const theCartItem = new CartItem(this.product)
       this.cartService.addToCart(theCartItem)
   }

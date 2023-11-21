@@ -10,10 +10,12 @@ import com.tcshop.ecommerce.entity.UserRole;
 import com.tcshop.ecommerce.service.UserService;
 import com.tcshop.ecommerce.dao.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 
 @SpringBootApplication
-public class SpringBootEcommerceApplication implements CommandLineRunner {
+public class SpringBootEcommerceApplication extends SpringBootServletInitializer implements CommandLineRunner {
 
     @Autowired
     private ProductService productService;
@@ -28,6 +30,11 @@ public class SpringBootEcommerceApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootEcommerceApplication.class, args);
+    }
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(SpringBootEcommerceApplication.class);
     }
 
     @Override
